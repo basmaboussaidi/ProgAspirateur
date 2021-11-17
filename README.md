@@ -7,3 +7,6 @@ Langage de programmation: Java 8
 
 ## Exécution :
 Afin de pouvoir exécuter ce programme, il suffit de cloner ce repertoire et de l'ouvrir sur un IDE, on vous demandera de saisir à partir de votre clavier les données en entrée et le résultat sera afficher sur votre console.
+
+## Documentation code :
+La documentation du code est généré par JavaDoc, elle contient également une petite description de chaque méthode, les paramétres d'entrée ainsi que la sortie .
