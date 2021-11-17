@@ -7,40 +7,41 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        Grille g = new Grille();
-        Aspirateur a = new Aspirateur();
+        Grille grille = new Grille();
+        Aspirateur aspirateur = new Aspirateur();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Saisissez le nombre de carrés sur l’axe x, x=");
+        System.out.print("Saisissez le nombre de carrés sur l’axe x, x=");
         int i = sc.nextInt();
-        g.setAxe_x(i);
-        System.out.println("Saisissez le nombre de carrés sur l’axe y, y=");
+        grille.setAxe_x(i);
+        System.out.print("Saisissez le nombre de carrés sur l’axe y, y=");
         int j = sc.nextInt();
-        g.setAxe_y(j);
-        System.out.println("Saisissez la position intitial de l'aspirateur sur l'axe des x");
+        grille.setAxe_y(j);
+        System.out.print("Saisissez la position intitial de l'aspirateur sur l'axe des x, posx=");
         int k = sc.nextInt();
-        a.setX(k);
-        System.out.println("Saisissez la position intitial de l'aspirateur sur l'axe des y");
+        aspirateur.setX(k);
+        System.out.print("Saisissez la position intitial de l'aspirateur sur l'axe des y, posy=");
         int h = sc.nextInt();
-        a.setY(h);
-        System.out.println("Saisissez l'orientation actuelle de l'aspirateur, elle doit respercter la notation cardinale anglaise (N,E,W,S)");
-        String ch = sc.next();
-        char orientation =ch.charAt(0);
-        a.setOrientation(orientation);
-        System.out.println(a.getOrientation());
-        System.out.println("Saisissez la chaine d'instruction, elle ne peut contenir que les valeurs suivante A,D,G");
-        String  instruction= sc.next();
-        System.out.println(instruction);
-
-
-        for (int l=0; l<instruction.length(); l++){
-            if ((instruction.charAt(l)=='A') || (instruction.charAt(l)=='D') || (instruction.charAt(l)=='G')){
-                AspirateurController.Deplacer_inst(a,g, instruction.charAt(l));
-            }
-            if (AspirateurController.Verifier(a,g)==false) {
-                break;
-            }
+        aspirateur.setY(h);
+        System.out.print("Saisissez l'orientation actuelle de l'aspirateur: ");
+        char orientation = sc.next().charAt(0);
+        while((orientation!='N') && (orientation!='S') && (orientation!= 'W') && (orientation!='E') ){
+            System.out.println("L'orientation doit respercter la notation cardinale anglaise (N,E,W,S)!");
+            System.out.print("Saisissez de nouveau l'orientation de l'aspirateur:");
+            orientation = sc.next().charAt(0);
         }
-        System.out.println( "La position finale de l'aspirateur est : x =" + a.getX() + " y =" + a.getY() + " orientation= " + a.getOrientation());
+        aspirateur.setOrientation(orientation);
+        System.out.print("Saisissez la chaine d'instruction: ");
+        String  instruction= sc.next();
+        for (int m=0; m<instruction.length(); m++){
+             while ((instruction.charAt(m)!='A') && (instruction.charAt(m)!='D') && (instruction.charAt(m)!='G') ){
+                 System.out.println("La chaine d'instruction ne peut contenir que les valeurs suivante A,D,G!");
+                 System.out.print("Saisissez de nouveau votre chaine d'instruction");
+                 instruction= sc.next();
+
+             }
+        }
+        AspirateurController.Deplacer_inst(aspirateur, grille, instruction);
+        System.out.println( "La position finale de l'aspirateur est : x =" + aspirateur.getX() + " y =" + aspirateur.getY() + " orientation= " + aspirateur.getOrientation());
         
 
     }
